@@ -37,10 +37,9 @@ class GitHubRequestor:
     def downloadContents(self, repoName, contents):
         if (self.__makeProjectDirectory(repoName)):
             for content in contents:
-                response = requests.get(content.download_url)
-
                 os.makedirs(os.path.dirname("gitHubProjects/" +
                             repoName + "/"+content.path), exist_ok=True)
                 with open("gitHubProjects/"+repoName + "/"+content.path, "wb") as f:
                     print("DOWNLOADING.....", content.path)
-                    f.write(response.content)
+                    if (content.encoding != 'none'):
+                        f.write(content.decoded_content)
