@@ -6,7 +6,8 @@ load_dotenv()
 
 requestor = GitHubRequestor(os.getenv("GitHubToken"))
 
-repo = "PyGithub/PyGithub"
+repo = "YubaNeupane/LIbarary-Management-System"
 
 
-requestor.getFileContentsFromRepo(repo)
+content = requestor.getFileContentsFromRepo(repo)
+requestor.downloadContents(repo, content)
